@@ -8,6 +8,6 @@
 /dataSources.local.xml
 /.idea/
 /.mvn/
-/mvnw/
-/mvnw.cmd/
-/pom.xml/
+mvnw/
+mvnw.cmd/
+pom.xml/
