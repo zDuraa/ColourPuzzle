@@ -3,14 +3,45 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<VBox alignment="CENTER" prefHeight="585.0" prefWidth="788.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.example.colourpuzzle.GameController">
+<VBox alignment="CENTER" prefHeight="585.0" prefWidth="788.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.colourpuzzle.GameController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+    <Button id="Test" alignment="CENTER" contentDisplay="CENTER" onAction="#onTestButtonClick" text="Bewege Farbe von Glass1 (Blau) in Glass2 (Rot)" />
+   <Button id="TestButton" mnemonicParsing="false" onAction="#fillVBox" prefHeight="26.0" prefWidth="322.0" text="Befülle Glass4 (rechts neben Orange)" />
+   <HBox id="GlassContainer" fx:id="glassContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <VBox id="Bottle1" fx:id="Bottle1" prefHeight="248.0" prefWidth="100.0">
+            <children>
+               <Rectangle id="Rectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+            </children>
+         </VBox>
+         <VBox id="Bottle2" fx:id="Bottle2" prefHeight="248.0" prefWidth="100.0">
+            <children>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff2b1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff2b1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0505" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+            </children>
+         </VBox>
+         <VBox id="Bottle3" fx:id="Bottle3" prefHeight="248.0" prefWidth="100.0">
+            <children>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa81f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa81f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbd1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb51f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+            </children>
+         </VBox>
+         <VBox id="Bottle4" fx:id="Bottle4" prefHeight="248.0" prefWidth="100.0" />
+      </children>
+   </HBox>
 
-    <Label fx:id="welcomeText" />
-   <Button mnemonicParsing="false" text="TestButton" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
+          <Label fx:id="welcomeText" />
 </VBox>
