@@ -38,8 +38,8 @@ public class Main extends javafx.application.Application {
         System.out.println("state: jug is created");
         lol.fillJug(3);
         System.out.println("state: jug is filled with bottles");
-        lol.getJug()[0].setLayer1(new colour(4));
-        System.out.println("state: colourId in first bottle: "+lol.getJug()[0].getLayer1().getColourId());
+        lol.getJug()[0].getBottle()[0].setColourId(4);
+        System.out.println("state: colourId in first bottle: "+lol.getJug()[0].getBottle()[0].getColourId());
 
         launch();
     }

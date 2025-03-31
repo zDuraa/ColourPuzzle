@@ -10,13 +10,18 @@ public class game {
 
     }
 
-    public void fillJug(int n)
+    public void fillJug(int num)
     {
         for (int i = 0; i < num+1;i++)
         {
-            this.jug[i] = new bottle();
+            this.jug[i] = new bottle(new colour(0),
+                                     new colour(0),
+                                     new colour(0),
+                                     new colour(0));
         }
     }
+
+
 
     public bottle[] getJug() {
         return jug;
