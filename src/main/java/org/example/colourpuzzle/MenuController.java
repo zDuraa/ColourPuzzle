@@ -68,9 +68,10 @@ public class MenuController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Diffeculty.fxml"));
             Parent root = loader.load();
-            diffecultyStage.setScene(difficultyScene);
+            //diffecultyStage.setScene(difficultyScene);
+            diffecultyStage.setScene(new Scene(root));
             diffecultyStage.show();
-
+            diffecultyStage.setTitle("Diffeculty");
 
         } catch (IOException e) {
             e.printStackTrace();
