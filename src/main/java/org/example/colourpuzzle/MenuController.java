@@ -14,12 +14,15 @@ import java.io.IOException;
 public class MenuController {
     @FXML
     private Scene gameScene;
+    private Scene difficultyScene;
     private Stage stage;
     private static Stage gameStage = null;
+    private static Stage diffecultyStage = new Stage();
 
-    public void setStage(Stage stage, Scene gameScene) {
+    public void setStage(Stage stage, Scene gameScene, Scene difficultyScene) {
         this.stage = stage;
         this.gameScene = gameScene;
+        this.difficultyScene = difficultyScene;
     }
 
     @FXML
@@ -57,5 +60,21 @@ public class MenuController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close(); // Schließt das Fenster und beendet das Spiel
         gameStage.close();
+    }
+
+    @FXML
+    private void onDifficultyClick(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Diffeculty.fxml"));
+            Parent root = loader.load();
+            diffecultyStage.setScene(difficultyScene);
+            diffecultyStage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -23,8 +23,13 @@ public class Main extends javafx.application.Application {
         Scene gameScene = new Scene(gameLoader.load());
         GameController gameController = gameLoader.getController();
 
+        //Initialazing Diffeculty Scene
+        FXMLLoader diffecultyLoader = new FXMLLoader(Main.class.getResource("Diffeculty.fxml"));
+        Scene diffecultyScene = new Scene(diffecultyLoader.load());
+        DiffecultyController diffecultyController = diffecultyLoader.getController();
+
         //Defining both Scenes
-        menuController.setStage(stage, gameScene);
+        menuController.setStage(stage, gameScene, diffecultyScene);
         gameController.setStage(stage, menuScene);
 
         //Setting stage
