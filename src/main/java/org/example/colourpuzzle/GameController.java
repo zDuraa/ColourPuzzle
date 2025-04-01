@@ -96,6 +96,4 @@ public class GameController {
             e.printStackTrace();
         }
     }
-
-    bottle flaschen = new bottle(new colour(1), new colour(2), new colour(3), new colour(4));
 }

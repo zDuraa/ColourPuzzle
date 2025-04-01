@@ -14,10 +14,7 @@ public class game {
     {
         for (int i = 0; i < num+1;i++)
         {
-            this.jug[i] = new bottle(new colour(0),
-                                     new colour(0),
-                                     new colour(0),
-                                     new colour(0));
+            this.jug[i] = new bottle(0, 0, 0, 0);
         }
     }
 

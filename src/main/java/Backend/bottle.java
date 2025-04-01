@@ -2,9 +2,9 @@ package Backend;
 
 public class bottle {
 
-    colour[] bot = new colour[4];
+    int[] bot = new int[4];
 
-    public bottle(colour layer1, colour layer2, colour layer3, colour layer4)
+    public bottle(int layer1, int layer2, int layer3, int layer4)
     {
         bot[0] = layer1;
         bot[1] = layer2;
@@ -22,7 +22,7 @@ public class bottle {
         int ret = -1;
         for (int i = 0; i < 4; i++)
         {
-            if (src.bot[i].getColourId() != 0)
+            if (src.bot[i] != 0)
             {
                 ret++;
             }
@@ -35,7 +35,7 @@ public class bottle {
         int ret = 0;
         for (int i = 3; i > -1; i--)
         {
-            if (tar.bot[i].getColourId() == 0)
+            if (tar.bot[i] == 0)
             {
                 ret++;
             }
@@ -48,7 +48,7 @@ public class bottle {
         int ret = 1;
         for (int i = 1; (layer-i) > -1; i++)
         {
-            if (src.bot[layer].getColourId() != src.bot[layer-i].getColourId())
+            if (src.bot[layer] != src.bot[layer-i])
             {
                 break;
             }
@@ -57,9 +57,14 @@ public class bottle {
         return ret;
     }
 
-    public colour[] getBottle()
+    public void setColourId(int layer, int id)
     {
-        return bot;
+        bot[layer] = id;
+    }
+
+    public int getColourId(int layer)
+    {
+        return bot[layer];
     }
 
 
