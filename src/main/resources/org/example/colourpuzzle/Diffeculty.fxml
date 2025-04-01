@@ -9,6 +9,6 @@
    <children>
       <Label layoutX="242.0" layoutY="168.0" text="Pick your diffeculty" />
       <Slider fx:id="diffecultySlider" layoutX="181.0" layoutY="229.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="238.0" showTickLabels="true" showTickMarks="true" />
-      <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
    </children>
 </AnchorPane>
