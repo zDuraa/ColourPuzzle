@@ -3,8 +3,11 @@ import Backend.game;
 import Backend.bottle;
 import Backend.colour;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -13,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -51,8 +55,7 @@ public class GameController {
 
 
     private void fillVBox(VBox bottle) {
-        bottle.getChildren().clear(); // Flasche leeren
-
+        bottle.getChildren().clear(); // Flasche leere
         // Liste mit Farben definieren
         List<Color> colors = new ArrayList<>();
         colors.add(Color.RED);
@@ -78,16 +81,19 @@ public class GameController {
         fillVBox(Bottle4);
     }
 
-
     @FXML
-    private void returnToMenu() {
-        stage.setScene(menuScene);
-    }
+    private void openMenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+            Parent root = loader.load();
 
-    @FXML
-    public void handleKeyPress(KeyEvent event) {
-        if (event.getCode().toString().equals("ESCAPE")) {
-            stage.setScene(menuScene);
+            Stage menuStage = new Stage(); // Aktuelles Fenster holen
+            menuStage.setTitle("Menu");
+            menuStage.setScene(new Scene(root)); // Szene auf das Menü wechseln
+            menuStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
