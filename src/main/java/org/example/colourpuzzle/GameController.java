@@ -90,6 +90,4 @@ public class GameController {
             stage.setScene(menuScene);
         }
     }
-
-    bottle flaschen = new bottle(new colour(1), new colour(2), new colour(3), new colour(4));
 }
