@@ -24,7 +24,13 @@ public class DiffecultyController {
         return iDiffeculty;
     }
 
-    public void setiDiffeculty(Slider diffecultySlider) {
-        this.iDiffeculty = (int)diffecultySlider.getValue();
+    public void setiDiffeculty(double diffecultySlider) {
+        this.iDiffeculty = (int)diffecultySlider;
+        System.out.println("Changing diff to: "+iDiffeculty);
+    }
+    @FXML
+    private void onTestklick()
+    {
+        setiDiffeculty(diffecultySlider.getValue());
     }
 }
