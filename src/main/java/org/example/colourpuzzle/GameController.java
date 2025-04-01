@@ -1,4 +1,7 @@
 package org.example.colourpuzzle;
+import Backend.game;
+import Backend.bottle;
+import Backend.colour;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,6 +12,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 public class GameController {
     @FXML
@@ -30,6 +38,7 @@ public class GameController {
     public void setStage(Stage stage, Scene menuScene) {
         this.menuScene = menuScene;
         this.stage = stage;
+        fillAllBottles();
     }
 
     @FXML
@@ -40,16 +49,35 @@ public class GameController {
         }
     }
 
-    @FXML
-    private void fillVBox() {
-        Bottle4.getChildren().clear(); // Falls bereits Elemente vorhanden sind, leeren
-        Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW}; // Farben definieren
 
-        for (Color color : colors) {
-            Rectangle rect = new Rectangle(50, 25, color); // Rechteck mit Farbe erstellen
-            Bottle4.getChildren().add(0, rect); // Unten einfügen, damit die Reihenfolge stimmt
+    private void fillVBox(VBox bottle) {
+        bottle.getChildren().clear(); // Flasche leeren
+
+        // Liste mit Farben definieren
+        List<Color> colors = new ArrayList<>();
+        colors.add(Color.RED);
+        colors.add(Color.BLUE);
+        colors.add(Color.GREEN);
+        colors.add(Color.YELLOW);
+
+        // Zufällige Reihenfolge mischen
+        Collections.shuffle(colors);
+
+        // 4 zufällige Farben auswählen
+        for (int i = 0; i < 4; i++) {
+            Rectangle rect = new Rectangle(50, 50, colors.get(i)); // Rechteck mit Farbe erstellen
+            bottle.getChildren().add(0, rect); // Unten einfügen (stapeln)
         }
     }
+
+    @FXML
+    private void fillAllBottles(){
+        fillVBox(Bottle1);
+        fillVBox(Bottle2);
+        fillVBox(Bottle3);
+        fillVBox(Bottle4);
+    }
+
 
     @FXML
     private void returnToMenu() {
@@ -62,4 +90,6 @@ public class GameController {
             stage.setScene(menuScene);
         }
     }
+
+    bottle flaschen = new bottle(new colour(1), new colour(2), new colour(3), new colour(4));
 }
