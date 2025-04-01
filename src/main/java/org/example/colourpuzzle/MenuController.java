@@ -1,5 +1,6 @@
 package org.example.colourpuzzle;
 
+import Backend.game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+
 public class MenuController {
     @FXML
     private Scene gameScene;
@@ -18,6 +21,8 @@ public class MenuController {
     private Stage stage;
     private static Stage gameStage = null;
     private static Stage diffecultyStage = new Stage();
+
+    DiffecultyController dCon = new DiffecultyController();
 
     public void setStage(Stage stage, Scene gameScene, Scene difficultyScene) {
         this.stage = stage;
@@ -33,6 +38,13 @@ public class MenuController {
             if (gameStage != null) {
                 gameStage.close();
             }
+
+            game lol = new game(3 + dCon.getiDiffeculty());
+            System.out.println("state: jug is created with diff: "+dCon.getiDiffeculty());
+            lol.fillJug(3);
+            System.out.println("state: jug is filled with bottles");
+            lol.getJug()[0].setColourId(0,4);
+            System.out.println("state: colourId in first bottle: "+lol.getJug()[0].getColourId(0));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = loader.load();
             Stage newGameStage = new Stage();
