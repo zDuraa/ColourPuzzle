@@ -13,6 +13,7 @@ public class DiffecultyController {
 
     private int iDiffeculty;
 
+    @FXML
     private void onBackClick(ActionEvent event)
     {
         Stage diffecultyStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
