@@ -58,6 +58,7 @@ public class GameController {
         bottle.getChildren().clear(); // Flasche leere
         // Liste mit Farben definieren
         List<Color> colors = new ArrayList<>();
+        colors.add(Color.TRANSPARENT);
         colors.add(Color.RED);
         colors.add(Color.BLUE);
         colors.add(Color.GREEN);

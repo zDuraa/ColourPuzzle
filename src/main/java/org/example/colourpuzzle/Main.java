@@ -3,9 +3,6 @@ package org.example.colourpuzzle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import Backend.game;
-import Backend.bottle;
-import Backend.colour;
 
 import java.io.IOException;
 
@@ -39,13 +36,6 @@ public class Main extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        game lol = new game(3);
-        System.out.println("state: jug is created");
-        lol.fillJug(3);
-        System.out.println("state: jug is filled with bottles");
-        lol.getJug()[0].setColourId(0,4);
-        System.out.println("state: colourId in first bottle: "+lol.getJug()[0].getColourId(0));
-
         launch();
     }
 }
