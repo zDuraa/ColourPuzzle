@@ -18,6 +18,7 @@ public class Main extends javafx.application.Application {
         //Initialazing Game Scene
         FXMLLoader gameLoader = new FXMLLoader(Main.class.getResource("Game.fxml"));
         Scene gameScene = new Scene(gameLoader.load());
+
         GameController gameController = gameLoader.getController();
 
         //Initialazing Diffeculty Scene

@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
 <VBox alignment="CENTER" prefHeight="585.0" prefWidth="788.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.colourpuzzle.GameController">
     <padding>
@@ -14,40 +13,17 @@
     </padding>
    <Pane prefHeight="200.0" prefWidth="200.0">
       <children>
-         <Button alignment="CENTER" layoutY="1.0" mnemonicParsing="false" onAction="#openMenu" text="Menu" />
-          <Button id="Test" alignment="CENTER" layoutX="409.0" layoutY="1.0" onAction="#onTestButtonClick" text="Bewege Farbe von Glass1 (Blau) in Glass2 (Rot)" />
-         <Button id="TestButton" layoutX="399.0" layoutY="27.0" mnemonicParsing="false" onAction="#fillAllBottles" prefHeight="26.0" prefWidth="322.0" text="Befülle Glass4 (rechts neben Orange)" />
-         <Label layoutY="27.0" text="Zeit" />
-         <Label fx:id="time" layoutX="27.0" layoutY="27.0" text="0:00" />
+         <Label fx:id="time" layoutX="76.0" layoutY="19.0" text="0:00" />
+         <Button alignment="CENTER" layoutX="25.0" layoutY="2.0" mnemonicParsing="false" onAction="#openMenu" text="Menu" />
+         <Label layoutX="78.0" layoutY="5.0" text="Zeit" />
       </children>
    </Pane>
    <HBox id="GlassContainer" fx:id="glassContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <VBox id="Bottle1" fx:id="Bottle1" prefHeight="248.0" prefWidth="100.0">
-            <children>
-               <Rectangle id="Rectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-            </children>
-         </VBox>
-         <VBox id="Bottle2" fx:id="Bottle2" prefHeight="248.0" prefWidth="100.0">
-            <children>
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff2b1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff2b1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0505" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-            </children>
-         </VBox>
-         <VBox id="Bottle3" fx:id="Bottle3" prefHeight="248.0" prefWidth="100.0">
-            <children>
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa81f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa81f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbd1f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb51f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-            </children>
-         </VBox>
-         <VBox id="Bottle4" fx:id="Bottle4" prefHeight="248.0" prefWidth="100.0" />
+         <VBox id="Bottle1" fx:id="Bottle1" onMouseClicked="#handleVBoxClick" prefHeight="248.0" prefWidth="100.0" styleClass="vbox-border" stylesheets="@style.css" />
+         <VBox id="Bottle2" fx:id="Bottle2" onMouseClicked="#handleVBoxClick" prefHeight="248.0" prefWidth="100.0" styleClass="vbox-border" stylesheets="@style.css" />
+         <VBox id="Bottle3" fx:id="Bottle3" onMouseClicked="#handleVBoxClick" prefHeight="248.0" prefWidth="100.0" styleClass="vbox-border" stylesheets="@style.css" />
+         <VBox id="Bottle4" fx:id="Bottle4" onMouseClicked="#handleVBoxClick" prefHeight="248.0" prefWidth="100.0" styleClass="vbox-border" stylesheets="@style.css" />
       </children>
    </HBox>
 </VBox>

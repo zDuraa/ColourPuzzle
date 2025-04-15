@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -39,47 +40,13 @@ public class GameController {
     @FXML
     private VBox Bottle4; // Flasche 4 (wird befüllt)
 
+    private VBox sourceBox = null;
+
+    private VBox[] VBoxArray = null;
+
     public void setStage(Stage stage, Scene menuScene) {
         this.menuScene = menuScene;
         this.stage = stage;
-        fillAllBottles();
-    }
-
-    @FXML
-    protected void onTestButtonClick() {
-        if (!Bottle1.getChildren().isEmpty()) {
-            Node topLayer = Bottle1.getChildren().remove(Bottle1.getChildren().size() - 1); // Entferne oberste Schicht
-            Bottle2.getChildren().add(0, topLayer); // Füge sie unten in Glas B hinzu
-        }
-    }
-
-
-    private void fillVBox(VBox bottle) {
-        bottle.getChildren().clear(); // Flasche leere
-        // Liste mit Farben definieren
-        List<Color> colors = new ArrayList<>();
-        colors.add(Color.TRANSPARENT);
-        colors.add(Color.RED);
-        colors.add(Color.BLUE);
-        colors.add(Color.GREEN);
-        colors.add(Color.YELLOW);
-
-        // Zufällige Reihenfolge mischen
-        Collections.shuffle(colors);
-
-        // 4 zufällige Farben auswählen
-        for (int i = 0; i < 4; i++) {
-            Rectangle rect = new Rectangle(50, 50, colors.get(i)); // Rechteck mit Farbe erstellen
-            bottle.getChildren().add(0, rect); // Unten einfügen (stapeln)
-        }
-    }
-
-    @FXML
-    private void fillAllBottles(){
-        fillVBox(Bottle1);
-        fillVBox(Bottle2);
-        fillVBox(Bottle3);
-        fillVBox(Bottle4);
     }
 
     @FXML
@@ -96,5 +63,82 @@ public class GameController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void initialize() {
+        // Flüssigkeit hinzufügen (Demo)
+
+        // Liste mit Farben definieren
+        List<Color> colors = new ArrayList<>();
+        VBoxArray = new VBox[]{Bottle1, Bottle2, Bottle3};
+        colors.add(Color.RED);
+        colors.add(Color.BLUE);
+        colors.add(Color.GREEN);
+
+
+        for (int i = 0; i < 3; i++) {
+
+            Collections.shuffle(colors);
+
+            addLiquid(VBoxArray[i], colors.get(0));
+            addLiquid(VBoxArray[i], colors.get(1));
+            addLiquid(VBoxArray[i], colors.get(2));
+
+        }
+
+    }
+
+    private void addLiquid(VBox bottle, Color color) {
+        Rectangle r = new Rectangle(100, 50, color);
+        bottle.getChildren().addFirst(r); // FIFO
+    }
+
+    @FXML
+    public void handleVBoxClick(MouseEvent event) {
+        VBox clicked = (VBox) event.getSource();
+
+        if (sourceBox == null) {
+            sourceBox = clicked;
+            sourceBox.getStyleClass().removeAll("vbox-border");
+            sourceBox.getStyleClass().add("vbox-selected");
+        } else {
+            VBox targetBox = clicked;
+
+            if (targetBox != sourceBox) {
+                transferLiquid(sourceBox, targetBox);
+            }
+
+            // Reset Styles
+            sourceBox.getStyleClass().removeAll("vbox-selected");
+            sourceBox.getStyleClass().add("vbox-border");
+            targetBox.getStyleClass().removeAll("vbox-selected");
+            targetBox.getStyleClass().add("vbox-border");
+
+            sourceBox = null;
+        }
+    }
+
+    private void transferLiquid(VBox source, VBox target) {
+        if (source.getChildren().isEmpty()) return;
+        if (target.getChildren().size() >= 4) return;
+
+
+        if (!target.getChildren().isEmpty()) {
+            Rectangle sourceTop = (Rectangle) source.getChildren().getFirst();
+            Rectangle targetTop = (Rectangle) target.getChildren().getFirst();
+
+            // Vergleiche die Farben
+            if (!((Color) sourceTop.getFill()).equals((Color) targetTop.getFill())) return;
+        }
+
+
+
+        Node top = source.getChildren().getFirst();
+
+
+
+        source.getChildren().remove(top);
+        target.getChildren().addFirst(top);
     }
 }

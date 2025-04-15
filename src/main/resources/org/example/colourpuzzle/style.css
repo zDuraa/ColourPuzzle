@@ -1,0 +1,9 @@
+.vbox-border {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
+
+.vbox-selected {
+    -fx-border-color: red;
+    -fx-border-width: 2;
+}
