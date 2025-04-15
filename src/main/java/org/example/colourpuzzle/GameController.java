@@ -65,6 +65,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Befülle die Behälter
+     */
     @FXML
     public void initialize() {
         // Flüssigkeit hinzufügen (Demo)
@@ -89,11 +92,22 @@ public class GameController {
 
     }
 
+    /**
+     * Erzeugt ein quadrat mit der übergebenen Farbe
+     * Fügt die Farbe an die erste Stelle des Behälters
+     * @param bottle
+     * @param color
+     */
     private void addLiquid(VBox bottle, Color color) {
         Rectangle r = new Rectangle(100, 50, color);
         bottle.getChildren().addFirst(r); // FIFO
     }
 
+    /**
+     *  Wenn Auf eine Vbox geklickt wird, so markiere es als Quelle und änder dessen border, wird nun auf ein weiteres geklickt,
+     *  wird dieses zum Ziel. Erfolgt alles ohne Probleme, so werden die Farben getauscht
+     * @param event
+     */
     @FXML
     public void handleVBoxClick(MouseEvent event) {
         VBox clicked = (VBox) event.getSource();
@@ -119,6 +133,16 @@ public class GameController {
         }
     }
 
+    /**
+     *  Zuerst gehen wir die Regeln durch was erlaubt ist.
+     *  - Die Quelle von wo die Farbe kommt, darf nicht leer sein
+     *  - Das Ziel in die die Farbe kommt, darf nicht voll sein
+     *  - Nur Farben der gleichen Farbe, dürfen aufeinander Treffen beim überweisen
+     *  Dann wird das Oberste Objekt aus der ersten Vbox removed und in das neue hinzugefügt und gemerged
+     *
+     * @param source
+     * @param target
+     */
     private void transferLiquid(VBox source, VBox target) {
         if (source.getChildren().isEmpty()) return;
         if (target.getChildren().size() >= 4) return;
@@ -140,5 +164,37 @@ public class GameController {
 
         source.getChildren().remove(top);
         target.getChildren().addFirst(top);
+        tryMergeTopRectangles(target);
     }
+
+    /**
+     *  Wenn 2 Rectangle mit der gleichen Farbe aufeinander treffen, so addiere dessen größen miteinander,
+     *  lösche die vorhanden 2 Rectangle und kreiere ein neues mit dessen Farbe und der neuen größe in der jeweiligen Ziel VBox
+     * @param vbox
+     */
+    private void tryMergeTopRectangles(VBox vbox) {
+        if (vbox.getChildren().size() < 2) return;
+
+        Rectangle top1 = (Rectangle) vbox.getChildren().get(0);
+        Rectangle top2 = (Rectangle) vbox.getChildren().get(1);
+
+        Color color1 = (Color) top1.getFill();
+        Color color2 = (Color) top2.getFill();
+
+        if (color1.equals(color2)) {
+            double newHeight = top1.getHeight() + top2.getHeight();
+            double width = top1.getWidth();
+
+            // Neues Rechteck erstellen mit doppelter Höhe
+            Rectangle merged = new Rectangle(width, newHeight, color1);
+            merged.setArcHeight(10);
+
+            // Alte löschen
+            vbox.getChildren().remove(0, 2);
+
+            // Neues oben einfügen
+            vbox.getChildren().addFirst(merged);
+        }
+    }
+
 }
