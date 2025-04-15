@@ -78,6 +78,7 @@ public class GameController {
         colors.add(Color.RED);
         colors.add(Color.BLUE);
         colors.add(Color.GREEN);
+        colors.add(Color.YELLOW);
 
 
         for (int i = 0; i < 3; i++) {
@@ -87,7 +88,7 @@ public class GameController {
             addLiquid(VBoxArray[i], colors.get(0));
             addLiquid(VBoxArray[i], colors.get(1));
             addLiquid(VBoxArray[i], colors.get(2));
-
+            addLiquid(VBoxArray[i], colors.get(3));
         }
 
     }
