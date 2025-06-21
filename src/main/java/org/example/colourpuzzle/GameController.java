@@ -25,7 +25,7 @@ public class GameController {
     private Stage stage;
     private Scene menuScene;
 
-    private game lol;
+    private game game;
 
     @FXML
     private HBox glassContainer; // Enthält die 3 Flaschen (Bottle1, Bottle2, Bottle3)
@@ -76,18 +76,18 @@ public class GameController {
     public void initialize() {
         // Flüssigkeit hinzufügen (Demo)
         int num = 3 + 1;
-        lol = new game(num);
+        game = new game(num);
         System.out.println("state: jug is created with diff: "+1);
-        lol.fillJug();
+        game.fillJug();
 
-        lol.checkJug();
-        lol.getJug()[0].setColourId(0,4);
+        game.checkJug();
+        game.getJug()[0].setColourId(0,4);
 
 
-        lol.initialize();
+        game.initialize();
 
         System.out.println();
-        lol.checkJug();
+        game.checkJug();
 
         VBoxList.add(Bottle1);
         VBoxList.add(Bottle2);
@@ -95,7 +95,7 @@ public class GameController {
         VBoxList.add(Bottle4);
         VBoxList.add(Bottle5);
 
-        printArr(lol);
+        printArr(game);
 
     }
 
@@ -149,12 +149,13 @@ public class GameController {
             VBox targetBox = clicked;
 
             if (targetBox != sourceBox) {
-                lol.moveColour(lol.getJug()[VBoxList.indexOf(sourceBox)], lol.getJug()[VBoxList.indexOf(targetBox)]);
-                printArr(lol);
-                lol.checkJug();
+                game.moveColour(game.getJug()[VBoxList.indexOf(sourceBox)], game.getJug()[VBoxList.indexOf(targetBox)]);
+                printArr(game);
+                game.checkJug();
             }
 
             // Reset Styles
+
             sourceBox.getStyleClass().removeAll("vbox-selected");
             sourceBox.getStyleClass().add("vbox-border");
             targetBox.getStyleClass().removeAll("vbox-selected");
