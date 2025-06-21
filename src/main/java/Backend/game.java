@@ -1,5 +1,9 @@
 package Backend;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class game {
     int num;
     bottle[] jug;
@@ -38,6 +42,32 @@ public class game {
                 }
             }
         }
+    }
+
+    public int initialize ()
+    {
+        int ret = -1;
+        List<Integer> number = new ArrayList<Integer>();
+        for (int i = 1 ; i < num+1; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                number.add(i);
+            }
+        }
+        Collections.shuffle(number);
+        int q = 0;
+        for (int i = 0 ; i < num; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                jug[i].setColourId(j,number.get(q));
+                q++;
+            }
+        }
+        //check if already solved(wincondition)
+        ret = 0;
+        return ret;
     }
 
     public void setJug(bottle[] jug) {
