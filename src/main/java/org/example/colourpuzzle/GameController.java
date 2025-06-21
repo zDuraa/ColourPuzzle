@@ -88,7 +88,6 @@ public class GameController {
         for (int i = 0; i < 3; i++) {
 
             Collections.shuffle(colors);
-
             addLiquid(VBoxArray[i], colors.get(0));
             addLiquid(VBoxArray[i], colors.get(1));
             addLiquid(VBoxArray[i], colors.get(2));

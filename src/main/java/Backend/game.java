@@ -1,5 +1,7 @@
 package Backend;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,6 +46,8 @@ public class game {
         }
     }
 
+
+
     public int initialize ()
     {
         int ret = -1;
@@ -84,5 +88,16 @@ public class game {
             }
             System.out.println("");
         }
+    }
+
+
+    public boolean winCon()
+    {
+        for(int i = 0; i < num+1; i++){
+            if(!((jug[i].bot[0] == jug[i].bot[1]) == (jug[i].bot[0] == jug[i].bot[2]))){
+                return false;
+            }
+        }
+        return true;
     }
 }
