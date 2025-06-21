@@ -110,7 +110,7 @@ public class GameController {
 
         printArr(game);
 
-        mC.startTime();
+
         startThread();
     }
 
@@ -148,7 +148,6 @@ public class GameController {
     /**
      *  Wenn auf eine Vbox geklickt wird, so markiere es als Quelle und änder dessen border, wird nun auf ein weiteres geklickt,
      *  wird dieses zum Ziel. Erfolgt alles ohne Probleme, so werden die Farben getauscht
-     *
      */
     @FXML
     public void handleVBoxClick(MouseEvent event) {
@@ -187,9 +186,9 @@ public class GameController {
         }
     }
 
-
     public void startThread()
     {
+        mC.startTime();
         timerRunning = true;
         timerThread = new Thread(() -> {
             while (timerRunning){
@@ -197,9 +196,18 @@ public class GameController {
                             timeLabel.setText(""+ mC.getElapsedSeconds());
                 });
 
+                try {
+                    Thread.sleep(100); // 100 ms Pause – 10 Updates pro Sekunde
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
+
         });
+
+        timerThread.setDaemon(true);
+        timerThread.start();
     }
 
 
