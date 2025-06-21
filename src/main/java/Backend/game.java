@@ -93,16 +93,24 @@ public class game {
     }
 
 
-    public boolean winCon()
-    {
-        for(int i = 0; i < num+1; i++){
-            if(!((jug[i].bot[0] == jug[i].bot[1]) == (jug[i].bot[0] == jug[i].bot[2]))){
+    public boolean winCon() {
+        int fullCount = 0;
+        int emptyCount = 0;
 
+        for (int i = 0; i < jug.length; i++) {
+            int b0 = jug[i].bot[0];
+            int b1 = jug[i].bot[1];
+            int b2 = jug[i].bot[2];
+
+            if (b0 == b1 && b0 == b2) {
+                fullCount++;
+            } else {
+                // Glas ist weder leer noch korrekt gefüllt → kein Sieg möglich
                 return false;
             }
         }
-        System.out.println("Condition triggert");
-        return true;
 
+        return fullCount == num+1 ;
     }
+
 }
