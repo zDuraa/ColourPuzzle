@@ -1,15 +1,13 @@
 package org.example.colourpuzzle;
-import Backend.game;
-import Backend.bottle;
 
 
+import Backend.GameColor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,6 +46,12 @@ public class GameController {
         this.menuScene = menuScene;
         this.stage = stage;
     }
+
+    GameColor white = new GameColor(0, Color.WHITE);
+    GameColor red = new GameColor(1, Color.RED);
+    GameColor blue = new GameColor(2, Color.BLUE);
+    GameColor yellow = new GameColor(3, Color.YELLOW);
+    GameColor green = new GameColor(4, Color.GREEN);
 
     @FXML
     private void openMenu(ActionEvent event) {

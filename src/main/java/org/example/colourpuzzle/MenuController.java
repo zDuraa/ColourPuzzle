@@ -38,7 +38,6 @@ public class MenuController {
     private void onPlayButtonClick(ActionEvent event) {
         try {
 
-
             if (gameStage != null) {
                 gameStage.close();
             }
