@@ -1,6 +1,6 @@
 package org.example.colourpuzzle;
 
-
+import Backend.game;
 import Backend.GameColor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +38,9 @@ public class GameController {
     @FXML
     private VBox Bottle4; // Flasche 4
 
+    @FXML
+    private VBox Bottle5; // Flasche 5 (wird befüllt)
+
     private VBox sourceBox = null;
 
     private VBox[] VBoxArray = null;
@@ -47,11 +50,7 @@ public class GameController {
         this.stage = stage;
     }
 
-    GameColor white = new GameColor(0, Color.WHITE);
-    GameColor red = new GameColor(1, Color.RED);
-    GameColor blue = new GameColor(2, Color.BLUE);
-    GameColor yellow = new GameColor(3, Color.YELLOW);
-    GameColor green = new GameColor(4, Color.GREEN);
+    GameColor col = new GameColor();
 
     @FXML
     private void openMenu(ActionEvent event) {
@@ -75,25 +74,35 @@ public class GameController {
     @FXML
     public void initialize() {
         // Flüssigkeit hinzufügen (Demo)
+        int num = 3 + 1;
+        game lol = new game(num);
+        System.out.println("state: jug is created with diff: "+1);
+        lol.fillJug();
 
-        // Liste mit Farben definieren
-        List<Color> colors = new ArrayList<>();
-        VBoxArray = new VBox[]{Bottle1, Bottle2, Bottle3};
-        colors.add(Color.RED);
-        colors.add(Color.BLUE);
-        colors.add(Color.GREEN);
-        colors.add(Color.YELLOW);
+        lol.checkJug();
+        lol.getJug()[0].setColourId(0,4);
 
 
-        for (int i = 0; i < 3; i++) {
+        lol.initialize();
 
-            Collections.shuffle(colors);
-            addLiquid(VBoxArray[i], colors.get(0));
-            addLiquid(VBoxArray[i], colors.get(1));
-            addLiquid(VBoxArray[i], colors.get(2));
-            addLiquid(VBoxArray[i], colors.get(3));
+        System.out.println();
+        lol.checkJug();
+
+        VBoxArray = new VBox[]{Bottle1, Bottle2, Bottle3, Bottle4,Bottle5};
+
+        printArr(lol);
+
+    }
+
+    public void printArr(game wow)
+    {
+        for (int i = 0; i < wow.getJug().length; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                addLiquid(VBoxArray[i], col.getColor(wow.getJug()[i].getColourId(j)));
+            }
         }
-
     }
 
     /**
