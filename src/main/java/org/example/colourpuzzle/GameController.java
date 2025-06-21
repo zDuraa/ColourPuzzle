@@ -25,7 +25,7 @@ public class GameController {
     private Stage stage;
     private Scene menuScene;
 
-    private game game;
+    private game lol;
 
     @FXML
     private HBox glassContainer; // Enthält die 3 Flaschen (Bottle1, Bottle2, Bottle3)
@@ -37,7 +37,8 @@ public class GameController {
     @FXML
     private VBox Bottle3; // Flasche 3
     @FXML
-    private VBox Bottle4; // Flasche 4
+    private VBox Bottle4; // Flasche 4 (wird befüllt)
+
     @FXML
     private VBox Bottle5; // Flasche 5 (wird befüllt)
 
@@ -76,18 +77,18 @@ public class GameController {
     public void initialize() {
         // Flüssigkeit hinzufügen (Demo)
         int num = 3 + 1;
-        game = new game(num);
+        lol = new game(num);
         System.out.println("state: jug is created with diff: "+1);
-        game.fillJug();
+        lol.fillJug();
 
-        game.checkJug();
-        game.getJug()[0].setColourId(0,4);
+        lol.checkJug();
+        lol.getJug()[0].setColourId(0,4);
 
 
-        game.initialize();
+        lol.initialize();
 
         System.out.println();
-        game.checkJug();
+        lol.checkJug();
 
         VBoxList.add(Bottle1);
         VBoxList.add(Bottle2);
@@ -95,7 +96,7 @@ public class GameController {
         VBoxList.add(Bottle4);
         VBoxList.add(Bottle5);
 
-        printArr(game);
+        printArr(lol);
 
     }
 
@@ -116,7 +117,7 @@ public class GameController {
         {
             for (int j = 0; j < 4; j++)
             {
-
+                VBoxList.get(i).getChildren().remove(0,1);
             }
         }
     }
@@ -149,13 +150,13 @@ public class GameController {
             VBox targetBox = clicked;
 
             if (targetBox != sourceBox) {
-                game.moveColour(game.getJug()[VBoxList.indexOf(sourceBox)], game.getJug()[VBoxList.indexOf(targetBox)]);
-                printArr(game);
-                game.checkJug();
+                lol.moveColour(lol.getJug()[VBoxList.indexOf(sourceBox)], lol.getJug()[VBoxList.indexOf(targetBox)]);
+                removeArr(lol);
+                printArr(lol);
+                lol.checkJug();
             }
 
             // Reset Styles
-
             sourceBox.getStyleClass().removeAll("vbox-selected");
             sourceBox.getStyleClass().add("vbox-border");
             targetBox.getStyleClass().removeAll("vbox-selected");
