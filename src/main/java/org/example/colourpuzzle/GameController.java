@@ -3,6 +3,7 @@ package org.example.colourpuzzle;
 import Backend.game;
 import Backend.GameColor;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -44,7 +45,8 @@ public class GameController {
 
     private VBox sourceBox = null;
     private VBox targetBox = null;
-
+    private Thread timerThread;
+    private boolean timerRunning;
 
     private List<VBox> VBoxList = new ArrayList<>();
     MenuController mC = new MenuController();
@@ -109,6 +111,7 @@ public class GameController {
         printArr(game);
 
         mC.startTime();
+        startThread();
     }
 
     public void printArr(game game)
@@ -178,71 +181,25 @@ public class GameController {
             if(temp){
                 //timer stoppen
                 openMenu();
+                timerRunning = false;
 
             }
         }
     }
 
-    /**
-     *  Zuerst gehen wir die Regeln durch was erlaubt ist.
-     *  - Die Quelle von wo die Farbe kommt, darf nicht leer sein
-     *  - Das Ziel in die die Farbe kommt, darf nicht voll sein
-     *  - Nur Farben der gleichen Farbe, dürfen aufeinander Treffen beim überweisen
-     *  Dann wird das Oberste Objekt aus der ersten Vbox removed und in das neue hinzugefügt und gemerged
-     *
-     */
-    private void transferLiquid(VBox source, VBox target) {
-        if (source.getChildren().isEmpty()) return;
-        if (target.getChildren().size() >= 4) return;
 
+    public void startThread()
+    {
+        timerRunning = true;
+        timerThread = new Thread(() -> {
+            while (timerRunning){
+                Platform.runLater(() -> {
+                            timeLabel.setText(""+ mC.getElapsedSeconds());
+                });
 
-        if (!target.getChildren().isEmpty()) {
-            Rectangle sourceTop = (Rectangle) source.getChildren().get(0);
-            Rectangle targetTop = (Rectangle) target.getChildren().get(0);
+            }
 
-            // Vergleiche die Farben
-            if (!( sourceTop.getFill()).equals( targetTop.getFill())) return;
-        }
-
-
-
-        Node top = source.getChildren().get(0);
-
-
-
-        source.getChildren().remove(top);
-        target.getChildren().add(top);
-        tryMergeTopRectangles(target);
-    }
-
-    /**
-     *  Wenn 2 Rectangle mit der gleichen Farbe aufeinander treffen, so addiere dessen größen miteinander,
-     *  lösche die vorhanden 2 Rectangle und kreiere ein neues mit dessen Farbe und der neuen größe in der jeweiligen Ziel VBox
-     * @param vbox die Box einer Flasche
-     */
-    private void tryMergeTopRectangles(VBox vbox) {
-        if (vbox.getChildren().size() < 2) return;
-
-        Rectangle top1 = (Rectangle) vbox.getChildren().get(0);
-        Rectangle top2 = (Rectangle) vbox.getChildren().get(1);
-
-        Color color1 = (Color) top1.getFill();
-        Color color2 = (Color) top2.getFill();
-
-        if (color1.equals(color2)) {
-            double newHeight = top1.getHeight() + top2.getHeight();
-            double width = top1.getWidth();
-
-            // Neues Rechteck erstellen mit doppelter Höhe
-            Rectangle merged = new Rectangle(width, newHeight, color1);
-            merged.setArcHeight(10);
-
-            // Alte löschen
-            vbox.getChildren().remove(0, 2);
-
-            // Neues oben einfügen
-            vbox.getChildren().add(merged);
-        }
+        });
     }
 
 
