@@ -12,17 +12,12 @@ public class bottle {
         bot[3] = layer4;
     }
 
-    public int moveColour(bottle source, bottle target)
-    {
-        return 0;
-    }
-
-    public int checkSrc(bottle src) //returns array pos of highest filled layer in bottle. if bottle is empty returns -1
+    public int checkTop() //returns array pos of highest filled layer in bottle. if bottle is empty returns -1
     {
         int ret = -1;
         for (int i = 0; i < 4; i++)
         {
-            if (src.bot[i] != 0)
+            if (bot[i] != 0)
             {
                 ret++;
             }
@@ -30,25 +25,12 @@ public class bottle {
         return ret;
     }
 
-    public int checkTar(bottle tar)     // returns number of free layers in the bottle
-    {
-        int ret = 0;
-        for (int i = 3; i > -1; i--)
-        {
-            if (tar.bot[i] == 0)
-            {
-                ret++;
-            }
-        }
-        return ret;
-    }
-
-    public int checkColourSize(bottle src, int layer)   // returns size of colour of the given layer
+    public int checkColourSize(int layer)   // returns size of colour of the given layer
     {
         int ret = 1;
         for (int i = 1; (layer-i) > -1; i++)
         {
-            if (src.bot[layer] != src.bot[layer-i])
+            if (bot[layer] != bot[layer-i])
             {
                 break;
             }
@@ -56,6 +38,7 @@ public class bottle {
         }
         return ret;
     }
+
 
     public void setColourId(int layer, int id)
     {

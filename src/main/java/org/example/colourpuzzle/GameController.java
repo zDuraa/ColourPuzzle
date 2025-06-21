@@ -1,7 +1,7 @@
 package org.example.colourpuzzle;
 import Backend.game;
 import Backend.bottle;
-import Backend.colour;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,7 +101,7 @@ public class GameController {
      */
     private void addLiquid(VBox bottle, Color color) {
         Rectangle r = new Rectangle(100, 50, color);
-        bottle.getChildren().addFirst(r); // FIFO
+        bottle.getChildren().add(0,r); // FIFO
     }
 
     /**
@@ -150,8 +150,8 @@ public class GameController {
 
 
         if (!target.getChildren().isEmpty()) {
-            Rectangle sourceTop = (Rectangle) source.getChildren().getFirst();
-            Rectangle targetTop = (Rectangle) target.getChildren().getFirst();
+            Rectangle sourceTop = (Rectangle) source.getChildren().get(0);
+            Rectangle targetTop = (Rectangle) target.getChildren().get(0);
 
             // Vergleiche die Farben
             if (!((Color) sourceTop.getFill()).equals((Color) targetTop.getFill())) return;
@@ -159,12 +159,12 @@ public class GameController {
 
 
 
-        Node top = source.getChildren().getFirst();
+        Node top = source.getChildren().get(0);
 
 
 
         source.getChildren().remove(top);
-        target.getChildren().addFirst(top);
+        target.getChildren().add(top);
         tryMergeTopRectangles(target);
     }
 
@@ -194,7 +194,7 @@ public class GameController {
             vbox.getChildren().remove(0, 2);
 
             // Neues oben einfügen
-            vbox.getChildren().addFirst(merged);
+            vbox.getChildren().add(merged);
         }
     }
 

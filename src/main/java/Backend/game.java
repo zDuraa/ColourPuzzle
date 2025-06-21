@@ -10,7 +10,7 @@ public class game {
 
     }
 
-    public void fillJug(int num)
+    public void fillJug()
     {
         for (int i = 0; i < num+1;i++)
         {
@@ -18,13 +18,41 @@ public class game {
         }
     }
 
-
-
     public bottle[] getJug() {
         return jug;
     }
 
+    public void moveColour(bottle source, bottle target)
+    {
+        int src = source.checkTop();
+        if (src != -1)
+        {
+            int size = source.checkColourSize(src);
+            int fill = target.checkTop();
+            if (size <= 4-fill )
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    target.setColourId(fill+1+i, source.getColourId(src-i));
+                    source.setColourId(src-i, 0);
+                }
+            }
+        }
+    }
+
     public void setJug(bottle[] jug) {
         this.jug = jug;
+    }
+
+    public void checkJug()
+    {
+        for (int j = 3; j > -1 ; j--)
+        {
+            for (int i = 0; i < num+1 ; i++ )
+            {
+                System.out.print("|"+jug[i].bot[j]+"| ");
+            }
+            System.out.println("");
+        }
     }
 }

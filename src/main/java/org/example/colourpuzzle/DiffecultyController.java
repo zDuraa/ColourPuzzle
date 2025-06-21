@@ -11,7 +11,7 @@ public class DiffecultyController {
     @FXML
     Slider diffecultySlider;
 
-    private int iDiffeculty = 0;
+    private int iDiffeculty = 1;
 
     @FXML
     private void onBackClick(ActionEvent event)

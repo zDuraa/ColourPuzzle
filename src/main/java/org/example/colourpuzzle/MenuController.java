@@ -8,10 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class MenuController {
@@ -39,12 +43,45 @@ public class MenuController {
                 gameStage.close();
             }
 
-            game lol = new game(3 + dCon.getiDiffeculty());
+            int num = 3 + dCon.getiDiffeculty();
+            game lol = new game(num);
             System.out.println("state: jug is created with diff: "+dCon.getiDiffeculty());
-            lol.fillJug(3);
+            lol.fillJug();
             System.out.println("state: jug is filled with bottles");
+            lol.checkJug();
             lol.getJug()[0].setColourId(0,4);
             System.out.println("state: colourId in first bottle: "+lol.getJug()[0].getColourId(0));
+            lol.checkJug();
+
+            List<Integer> number = new ArrayList<Integer>();
+            for (int i = 1 ; i < num+1; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    number.add(i);
+                }
+            }
+            Collections.shuffle(number);
+            int q = 0;
+            for (int i = 0 ; i < num; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    lol.getJug()[i].setColourId(j,number.get(q));
+                    q++;
+                }
+            }
+            System.out.println();
+            lol.checkJug();
+
+            lol.moveColour(lol.getJug()[0], lol.getJug()[1]);
+
+            System.out.println();
+            lol.checkJug();
+
+
+
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = loader.load();
             Stage newGameStage = new Stage();
