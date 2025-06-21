@@ -6,13 +6,13 @@ import Backend.GameColor;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
+
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -71,7 +71,6 @@ public class GameController {
                 MenuController menuController = loader.getController();
                 menuController.setWinText("You won!");
                 menuController.setTimeText(""+mC.getElapsedSeconds());
-
             }
             menuStage.setTitle("Menu");
             menuStage.setScene(new Scene(root)); // Szene auf das Menü wechseln
@@ -175,7 +174,6 @@ public class GameController {
 
             sourceBox = null;
 
-
             boolean temp = game.winCon();
             if(temp){
                 //timer stoppen
@@ -209,7 +207,5 @@ public class GameController {
         timerThread.setDaemon(true);
         timerThread.start();
     }
-
-
 
 }
