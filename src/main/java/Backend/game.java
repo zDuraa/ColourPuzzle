@@ -1,7 +1,5 @@
 package Backend;
 
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,10 +47,9 @@ public class game {
 
 
 
-    public int initialize ()
+    public void initialize ()
     {
-        int ret = -1;
-        List<Integer> number = new ArrayList<Integer>();
+        List<Integer> number = new ArrayList<>();
         for (int i = 1 ; i < num+1; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -70,13 +67,7 @@ public class game {
                 q++;
             }
         }
-        //check if already solved(wincondition)
-        ret = 0;
-        return ret;
-    }
-
-    public void setJug(bottle[] jug) {
-        this.jug = jug;
+        //check if already solved(win condition)
     }
 
     public void checkJug()
@@ -87,20 +78,19 @@ public class game {
             {
                 System.out.print("|"+jug[i].bot[j]+"| ");
             }
-            System.out.println("");
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println();
     }
 
 
     public boolean winCon() {
         int fullCount = 0;
-        int emptyCount = 0;
 
-        for (int i = 0; i < jug.length; i++) {
-            int b0 = jug[i].bot[0];
-            int b1 = jug[i].bot[1];
-            int b2 = jug[i].bot[2];
+        for (bottle bottle : jug) {
+            int b0 = bottle.bot[0];
+            int b1 = bottle.bot[1];
+            int b2 = bottle.bot[2];
 
             if (b0 == b1 && b0 == b2) {
                 fullCount++;

@@ -2,7 +2,7 @@ package org.example.colourpuzzle;
 
 import Backend.game;
 import Backend.GameColor;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,21 +16,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class GameController {
+    public Label timeLabel;
     @FXML
     private Stage stage;
     private Scene menuScene;
 
     private game game;
-
-    @FXML
-    private HBox glassContainer; // Enthält die 3 Flaschen (Bottle1, Bottle2, Bottle3)
 
     @FXML
     private VBox Bottle1; // Flasche 1
@@ -44,11 +41,9 @@ public class GameController {
     @FXML
     private VBox Bottle5; // Flasche 5 (wird befüllt)
 
-    @FXML
-    private Label label1;
-
 
     private VBox sourceBox = null;
+    private VBox targetBox = null;
 
 
     private List<VBox> VBoxList = new ArrayList<>();
@@ -136,9 +131,7 @@ public class GameController {
 
     /**
      * Erzeugt ein quadrat mit der übergebenen Farbe
-     * Fügt die Farbe an die erste Stelle des Behälters
-     * @param bottle
-     * @param color
+     * fügt die Farbe an die erste Stelle des Behälters
      */
     private void addLiquid(VBox bottle, Color color) {
         Rectangle r = new Rectangle(100, 50, color);
@@ -146,9 +139,9 @@ public class GameController {
     }
 
     /**
-     *  Wenn Auf eine Vbox geklickt wird, so markiere es als Quelle und änder dessen border, wird nun auf ein weiteres geklickt,
+     *  Wenn auf eine Vbox geklickt wird, so markiere es als Quelle und änder dessen border, wird nun auf ein weiteres geklickt,
      *  wird dieses zum Ziel. Erfolgt alles ohne Probleme, so werden die Farben getauscht
-     * @param event
+     *
      */
     @FXML
     public void handleVBoxClick(MouseEvent event) {
@@ -159,7 +152,7 @@ public class GameController {
             sourceBox.getStyleClass().removeAll("vbox-border");
             sourceBox.getStyleClass().add("vbox-selected");
         } else {
-            VBox targetBox = clicked;
+            targetBox = clicked;
 
             if (targetBox != sourceBox) {
                 game.moveColour(game.getJug()[VBoxList.indexOf(sourceBox)], game.getJug()[VBoxList.indexOf(targetBox)]);
@@ -178,7 +171,7 @@ public class GameController {
 
 
             boolean temp = game.winCon();
-            if(temp == true){
+            if(temp){
                 //timer stopppen
                 openMenu();
             }
@@ -192,8 +185,6 @@ public class GameController {
      *  - Nur Farben der gleichen Farbe, dürfen aufeinander Treffen beim überweisen
      *  Dann wird das Oberste Objekt aus der ersten Vbox removed und in das neue hinzugefügt und gemerged
      *
-     * @param source
-     * @param target
      */
     private void transferLiquid(VBox source, VBox target) {
         if (source.getChildren().isEmpty()) return;
@@ -205,7 +196,7 @@ public class GameController {
             Rectangle targetTop = (Rectangle) target.getChildren().get(0);
 
             // Vergleiche die Farben
-            if (!((Color) sourceTop.getFill()).equals((Color) targetTop.getFill())) return;
+            if (!( sourceTop.getFill()).equals( targetTop.getFill())) return;
         }
 
 
@@ -222,7 +213,7 @@ public class GameController {
     /**
      *  Wenn 2 Rectangle mit der gleichen Farbe aufeinander treffen, so addiere dessen größen miteinander,
      *  lösche die vorhanden 2 Rectangle und kreiere ein neues mit dessen Farbe und der neuen größe in der jeweiligen Ziel VBox
-     * @param vbox
+     * @param vbox die Box einer Flasche
      */
     private void tryMergeTopRectangles(VBox vbox) {
         if (vbox.getChildren().size() < 2) return;

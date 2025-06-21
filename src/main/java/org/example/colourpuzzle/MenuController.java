@@ -1,6 +1,5 @@
 package org.example.colourpuzzle;
 
-import Backend.game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,17 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 public class MenuController {
+    public Label labelFinalTime;
     @FXML
     private Label label1;
     @FXML
@@ -28,7 +23,7 @@ public class MenuController {
     private static Stage gameStage = null;
     private static Stage diffecultyStage = new Stage();
 
-    DiffecultyController dCon = new DiffecultyController();
+    DifficultyController dCon = new DifficultyController();
 
     public void setStage(Stage stage, Scene gameScene, Scene difficultyScene) {
         this.stage = stage;

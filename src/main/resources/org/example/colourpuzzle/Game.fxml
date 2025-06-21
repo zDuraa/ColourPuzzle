@@ -13,7 +13,7 @@
     </padding>
    <Pane prefHeight="200.0" prefWidth="200.0">
       <children>
-         <Label fx:id="time" layoutX="76.0" layoutY="19.0" text="0:00" />
+         <Label id="timeLabel" fx:id="timeLabel" layoutX="107.0" layoutY="6.0" prefHeight="17.0" prefWidth="39.0" text="0:00" />
          <Button alignment="CENTER" layoutX="25.0" layoutY="2.0" mnemonicParsing="false" onAction="#openMenu" text="Menu" />
          <Label layoutX="78.0" layoutY="5.0" text="Zeit" />
       </children>

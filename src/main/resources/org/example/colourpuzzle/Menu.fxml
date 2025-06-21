@@ -9,6 +9,7 @@
       <Button layoutX="251.0" layoutY="84.0" mnemonicParsing="false" onAction="#onPlayButtonClick" text="new Game" />
       <Button layoutX="270.0" layoutY="325.0" mnemonicParsing="false" onAction="#onExitButtonClick" text="Exit" />
       <Button layoutX="254.0" layoutY="187.0" mnemonicParsing="false" onAction="#onDifficultyClick" text="Diffeculty" />
-      <Label id="label1" fx:id="label1" layoutX="277.0" layoutY="43.0" prefHeight="17.0" prefWidth="89.0" text="Hello" textAlignment="CENTER" />
+      <Label id="label1" fx:id="label1" layoutX="26.0" layoutY="29.0" prefHeight="17.0" prefWidth="89.0" text="Hello" textAlignment="CENTER" />
+      <Label id="labelFinalTime" fx:id="labelFinalTime" layoutX="26.0" layoutY="46.0" />
    </children>
 </AnchorPane>

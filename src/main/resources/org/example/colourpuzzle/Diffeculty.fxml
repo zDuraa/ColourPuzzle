@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.colourpuzzle.DiffecultyController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.colourpuzzle.DifficultyController">
    <children>
       <Label layoutX="250.0" layoutY="104.0" text="Pick your diffeculty" />
       <Slider fx:id="diffecultySlider" layoutX="195.0" layoutY="188.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="238.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />

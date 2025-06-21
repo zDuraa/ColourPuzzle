@@ -1,12 +1,8 @@
 package Backend;
-import javafx.scene.layout.VBox;
+
 import javafx.scene.paint.Color;
-
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class GameColor {
 
