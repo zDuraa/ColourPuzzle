@@ -117,7 +117,7 @@ public class GameController {
         {
             for (int j = 0; j < 4; j++)
             {
-
+                VBoxList.get(i).getChildren().remove(0,1);
             }
         }
     }
@@ -151,6 +151,7 @@ public class GameController {
 
             if (targetBox != sourceBox) {
                 lol.moveColour(lol.getJug()[VBoxList.indexOf(sourceBox)], lol.getJug()[VBoxList.indexOf(targetBox)]);
+                removeArr(lol);
                 printArr(lol);
                 lol.checkJug();
             }
