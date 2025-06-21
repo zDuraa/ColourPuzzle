@@ -42,6 +42,7 @@ public class game {
                 }
             }
         }
+
     }
 
     public int initialize ()

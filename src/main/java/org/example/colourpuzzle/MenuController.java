@@ -42,29 +42,6 @@ public class MenuController {
                 gameStage.close();
             }
 
-            int num = 3 + dCon.getiDiffeculty();
-            game lol = new game(num);
-            System.out.println("state: jug is created with diff: "+dCon.getiDiffeculty());
-            lol.fillJug();
-            System.out.println("state: jug is filled with bottles");
-            lol.checkJug();
-            lol.getJug()[0].setColourId(0,4);
-            System.out.println("state: colourId in first bottle: "+lol.getJug()[0].getColourId(0));
-            lol.checkJug();
-
-            lol.initialize();
-
-            System.out.println();
-            lol.checkJug();
-
-            lol.moveColour(lol.getJug()[0], lol.getJug()[1]);
-
-            System.out.println();
-            lol.checkJug();
-
-
-
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = loader.load();
             Stage newGameStage = new Stage();
