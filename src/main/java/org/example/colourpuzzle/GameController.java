@@ -36,7 +36,7 @@ public class GameController {
     @FXML
     private VBox Bottle3; // Flasche 3
     @FXML
-    private VBox Bottle4; // Flasche 4 (wird befüllt)
+    private VBox Bottle4; // Flasche 4
 
     private VBox sourceBox = null;
 
