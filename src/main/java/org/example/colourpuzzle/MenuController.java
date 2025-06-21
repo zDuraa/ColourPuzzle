@@ -1,5 +1,6 @@
 package org.example.colourpuzzle;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -22,6 +23,8 @@ public class MenuController {
     private Stage stage;
     private static Stage gameStage = null;
     private static Stage diffecultyStage = new Stage();
+    private AnimationTimer gameTimer;
+    private double elapsedSeconds = 0;
 
     DifficultyController dCon = new DifficultyController();
 
@@ -34,7 +37,13 @@ public class MenuController {
 
     @FXML
     private void onPlayButtonClick(ActionEvent event) {
+
+
+
         try {
+
+
+
 
             if (gameStage != null) {
                 gameStage.close();
@@ -47,7 +56,7 @@ public class MenuController {
             gameStage = newGameStage;
             gameStage.setScene(gameScene);
             gameStage.show();
-
+            startTime();
 
             // Menü schließen
             Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -88,5 +97,32 @@ public class MenuController {
 
     public void setWinText(String text) {
         label1.setText(text);
+    }
+
+    public void setTimeText(String text) {
+        labelFinalTime.setText(text);
+    }
+
+    public void startTime()
+    {
+        long startTime;
+        startTime = System.currentTimeMillis();
+        gameTimer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                long currentTime = System.currentTimeMillis();
+                elapsedSeconds = (currentTime - startTime) / 1000.0;
+            }
+        };
+
+        gameTimer.start();
+    }
+
+    public double getElapsedSeconds() {
+        return elapsedSeconds;
+    }
+
+    public void setElapsedSeconds(double elapsedSeconds) {
+        this.elapsedSeconds = elapsedSeconds;
     }
 }

@@ -9,13 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +47,7 @@ public class GameController {
 
 
     private List<VBox> VBoxList = new ArrayList<>();
+    MenuController mC = new MenuController();
 
     public void setStage(Stage stage, Scene menuScene) {
         this.menuScene = menuScene;
@@ -67,6 +68,8 @@ public class GameController {
             if(temp){
                 MenuController menuController = loader.getController();
                 menuController.setWinText("You won!");
+                menuController.setTimeText(""+mC.getElapsedSeconds());
+
             }
             menuStage.setTitle("Menu");
             menuStage.setScene(new Scene(root)); // Szene auf das Menü wechseln
@@ -105,6 +108,7 @@ public class GameController {
 
         printArr(game);
 
+        mC.startTime();
     }
 
     public void printArr(game game)
@@ -172,8 +176,9 @@ public class GameController {
 
             boolean temp = game.winCon();
             if(temp){
-                //timer stopppen
+                //timer stoppen
                 openMenu();
+
             }
         }
     }
