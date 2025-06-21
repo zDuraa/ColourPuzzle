@@ -34,12 +34,12 @@ public class game {
         if (src != -1)
         {
             int size = source.checkColourSize(src);
-            int fill = target.checkTop();
-            if (size <= 4-fill )
+            int tarTop = target.checkTop();
+            if (size < 4 - tarTop )
             {
                 for (int i = 0; i < size; i++)
                 {
-                    target.setColourId(fill+1+i, source.getColourId(src-i));
+                    target.setColourId(tarTop+1+i, source.getColourId(src-i));
                     source.setColourId(src-i, 0);
                 }
             }
@@ -89,6 +89,7 @@ public class game {
             }
             System.out.println("");
         }
+        System.out.println("");
     }
 
 

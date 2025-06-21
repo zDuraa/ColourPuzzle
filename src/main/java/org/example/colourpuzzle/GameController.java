@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -25,6 +24,8 @@ public class GameController {
     @FXML
     private Stage stage;
     private Scene menuScene;
+
+    private game lol;
 
     @FXML
     private HBox glassContainer; // Enthält die 3 Flaschen (Bottle1, Bottle2, Bottle3)
@@ -43,7 +44,8 @@ public class GameController {
 
     private VBox sourceBox = null;
 
-    private VBox[] VBoxArray = null;
+
+    private List<VBox> VBoxList = new ArrayList<>();
 
     public void setStage(Stage stage, Scene menuScene) {
         this.menuScene = menuScene;
@@ -75,7 +77,7 @@ public class GameController {
     public void initialize() {
         // Flüssigkeit hinzufügen (Demo)
         int num = 3 + 1;
-        game lol = new game(num);
+        lol = new game(num);
         System.out.println("state: jug is created with diff: "+1);
         lol.fillJug();
 
@@ -88,7 +90,11 @@ public class GameController {
         System.out.println();
         lol.checkJug();
 
-        VBoxArray = new VBox[]{Bottle1, Bottle2, Bottle3, Bottle4,Bottle5};
+        VBoxList.add(Bottle1);
+        VBoxList.add(Bottle2);
+        VBoxList.add(Bottle3);
+        VBoxList.add(Bottle4);
+        VBoxList.add(Bottle5);
 
         printArr(lol);
 
@@ -100,7 +106,18 @@ public class GameController {
         {
             for (int j = 0; j < 4; j++)
             {
-                addLiquid(VBoxArray[i], col.getColor(wow.getJug()[i].getColourId(j)));
+                addLiquid(VBoxList.get(i), col.getColor(wow.getJug()[i].getColourId(j)));
+            }
+        }
+    }
+
+    public void removeArr(game wow)
+    {
+        for (int i = 0; i < wow.getJug().length; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+
             }
         }
     }
@@ -133,7 +150,9 @@ public class GameController {
             VBox targetBox = clicked;
 
             if (targetBox != sourceBox) {
-                transferLiquid(sourceBox, targetBox);
+                lol.moveColour(lol.getJug()[VBoxList.indexOf(sourceBox)], lol.getJug()[VBoxList.indexOf(targetBox)]);
+                printArr(lol);
+                lol.checkJug();
             }
 
             // Reset Styles
