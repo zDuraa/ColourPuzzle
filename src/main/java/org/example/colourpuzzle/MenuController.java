@@ -20,6 +20,8 @@ import java.util.List;
 
 public class MenuController {
     @FXML
+    private Label label1;
+    @FXML
     private Scene gameScene;
     private Scene difficultyScene;
     private Stage stage;
@@ -32,6 +34,7 @@ public class MenuController {
         this.stage = stage;
         this.gameScene = gameScene;
         this.difficultyScene = difficultyScene;
+        this.label1.setText("Hello");
     }
 
     @FXML
@@ -86,5 +89,9 @@ public class MenuController {
             e.printStackTrace();
         }
 
+    }
+
+    public void setWinText(String text) {
+        label1.setText(text);
     }
 }

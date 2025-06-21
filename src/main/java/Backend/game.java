@@ -97,9 +97,12 @@ public class game {
     {
         for(int i = 0; i < num+1; i++){
             if(!((jug[i].bot[0] == jug[i].bot[1]) == (jug[i].bot[0] == jug[i].bot[2]))){
+
                 return false;
             }
         }
+        System.out.println("Condition triggert");
         return true;
+
     }
 }

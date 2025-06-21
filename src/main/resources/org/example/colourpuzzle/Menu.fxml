@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.colourpuzzle.MenuController">
    <children>
       <Button layoutX="251.0" layoutY="84.0" mnemonicParsing="false" onAction="#onPlayButtonClick" text="new Game" />
-      <Button layoutX="272.0" layoutY="324.0" mnemonicParsing="false" onAction="#onExitButtonClick" text="Exit" />
+      <Button layoutX="270.0" layoutY="325.0" mnemonicParsing="false" onAction="#onExitButtonClick" text="Exit" />
       <Button layoutX="254.0" layoutY="187.0" mnemonicParsing="false" onAction="#onDifficultyClick" text="Diffeculty" />
+      <Label id="label1" fx:id="label1" layoutX="277.0" layoutY="43.0" prefHeight="17.0" prefWidth="89.0" text="Hello" textAlignment="CENTER" />
    </children>
 </AnchorPane>

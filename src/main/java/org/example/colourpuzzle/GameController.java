@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class GameController {
     private Stage stage;
     private Scene menuScene;
 
-    private game lol;
+    private game game;
 
     @FXML
     private HBox glassContainer; // Enthält die 3 Flaschen (Bottle1, Bottle2, Bottle3)
@@ -42,6 +44,10 @@ public class GameController {
     @FXML
     private VBox Bottle5; // Flasche 5 (wird befüllt)
 
+    @FXML
+    private Label label1;
+
+
     private VBox sourceBox = null;
 
 
@@ -55,12 +61,18 @@ public class GameController {
     GameColor col = new GameColor();
 
     @FXML
-    private void openMenu(ActionEvent event) {
+    private void openMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Parent root = loader.load();
 
             Stage menuStage = new Stage(); // Aktuelles Fenster holen
+
+            boolean temp = game.winCon();
+            if(temp){
+                MenuController menuController = loader.getController();
+                menuController.setWinText("You won!");
+            }
             menuStage.setTitle("Menu");
             menuStage.setScene(new Scene(root)); // Szene auf das Menü wechseln
             menuStage.show();
@@ -77,18 +89,18 @@ public class GameController {
     public void initialize() {
         // Flüssigkeit hinzufügen (Demo)
         int num = 3 + 1;
-        lol = new game(num);
+        game = new game(num);
         System.out.println("state: jug is created with diff: "+1);
-        lol.fillJug();
+        game.fillJug();
 
-        lol.checkJug();
-        lol.getJug()[0].setColourId(0,4);
+        game.checkJug();
+        game.getJug()[0].setColourId(0,4);
 
 
-        lol.initialize();
+        game.initialize();
 
         System.out.println();
-        lol.checkJug();
+        game.checkJug();
 
         VBoxList.add(Bottle1);
         VBoxList.add(Bottle2);
@@ -96,24 +108,24 @@ public class GameController {
         VBoxList.add(Bottle4);
         VBoxList.add(Bottle5);
 
-        printArr(lol);
+        printArr(game);
 
     }
 
-    public void printArr(game wow)
+    public void printArr(game game)
     {
-        for (int i = 0; i < wow.getJug().length; i++)
+        for (int i = 0; i < game.getJug().length; i++)
         {
             for (int j = 0; j < 4; j++)
             {
-                addLiquid(VBoxList.get(i), col.getColor(wow.getJug()[i].getColourId(j)));
+                addLiquid(VBoxList.get(i), col.getColor(game.getJug()[i].getColourId(j)));
             }
         }
     }
 
-    public void removeArr(game wow)
+    public void removeArr(game game)
     {
-        for (int i = 0; i < wow.getJug().length; i++)
+        for (int i = 0; i < game.getJug().length; i++)
         {
             for (int j = 0; j < 4; j++)
             {
@@ -150,10 +162,10 @@ public class GameController {
             VBox targetBox = clicked;
 
             if (targetBox != sourceBox) {
-                lol.moveColour(lol.getJug()[VBoxList.indexOf(sourceBox)], lol.getJug()[VBoxList.indexOf(targetBox)]);
-                removeArr(lol);
-                printArr(lol);
-                lol.checkJug();
+                game.moveColour(game.getJug()[VBoxList.indexOf(sourceBox)], game.getJug()[VBoxList.indexOf(targetBox)]);
+                removeArr(game);
+                printArr(game);
+                game.checkJug();
             }
 
             // Reset Styles
@@ -163,6 +175,13 @@ public class GameController {
             targetBox.getStyleClass().add("vbox-border");
 
             sourceBox = null;
+
+
+            boolean temp = game.winCon();
+            if(temp == true){
+                //timer stopppen
+                openMenu();
+            }
         }
     }
 
@@ -229,5 +248,7 @@ public class GameController {
             vbox.getChildren().add(merged);
         }
     }
+
+
 
 }
